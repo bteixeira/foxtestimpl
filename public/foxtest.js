@@ -17,7 +17,8 @@ $(function () {
         return new google.maps.Marker({
             position: latlng,
             map: map,
-            title:"Hello World!"
+            title:"Hello World!",
+            animation: google.maps.Animation.DROP
         });
     }
 
@@ -47,10 +48,19 @@ $(function () {
     foxjax(TOKEN, {}, function (data) {
             cfg.token = data.token;
             foxjax(OFFERS, {token: cfg.token}, function (data) {
-                $.each(data, function(i, offer) {
-                    console.log(offer);
-                    marker(offer.lat, offer.long);
-                });
+                var i = 0;
+                function getDelay() {
+                    return Math.round(Math.random() * 50) + 20; // between 20 and 70
+                }
+                function schedule() {
+                    if (i >= data.length) {
+                        return;
+                    }
+                    marker(data[i].lat, data[i].long);
+                    i++;
+                    setTimeout(schedule, getDelay());
+                }
+                schedule();
             });
         }
     );

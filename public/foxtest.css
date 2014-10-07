@@ -2,4 +2,55 @@ html, body, #map-canvas {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: HelveticaNeueLTStd, Arial, sans-serif;
 }
+
+#container {
+    padding-top: 100px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    position: absolute;
+    height: 100px;
+    line-height: 76px;
+    width: 100%;
+    background-color: #013e6d;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+header h1 {
+    -webkit-font-smoothing: antialiased;
+    font-size: 48px;
+    color: white;
+    font-weight: 500;
+    margin-left: 12px;
+    vertical-align: top;
+    display: inline;
+    text-shadow: 0 2px 4px rgba(1,69,109,0.5);
+    font-family: HelveticaNeueLTStd, Arial, sans-serif;
+}
+header h2 {
+    -webkit-font-smoothing: antialiased;
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+    border-left: solid white 1px;
+    margin-left: 20px;
+    padding-left: 12px;
+    vertical-align: text-bottom;
+    display: inline;
+    text-shadow: 0 2px 4px rgba(1,69,109,0.5);
+    font-family: HelveticaNeueLTStd, Arial, sans-serif;
+}
+
+header h2 a {
+    color: white;
+    text-decoration: none;
+}
+header h2 a:hover {
+    text-decoration: underline;
+}
+
