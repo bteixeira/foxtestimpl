@@ -132,14 +132,15 @@ return;
 
     }
 
-    angular.module('foxtestApp', [
-        'foxtestApp.controllers',
-        'foxtestApp.services'
+    angular.module('foxtest', [
+        'foxtest.controllers',
+        'foxtest.services'
     ]);
 
 
 
-    angular.module('foxtestApp.controllers', []).controller('foxtestCtrl', function ($scope, offersService) {
+
+    angular.module('foxtest.controllers', []).controller('foxtestCtrl', function ($scope, offersService) {
 
         map = new google.maps.Map(document.getElementById('map-canvas'), {
             center: {
@@ -157,7 +158,7 @@ return;
         };
 
         $scope.fetchOffers = function () {
-            offersService.getOffers().success(function (response) {
+            offersService.getOffers(function (response) {
                 dropMarkers(response);
             });
         };
