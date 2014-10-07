@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'HelveticaNeueLTStd';
     src: url("2B4C32_3_0.eot");
-    src: url("2B4C32_3_0.eot?#iefix") format("embedded-opentype"), url("2B4C32_3_0.woff") format("woff"), url("2B4C32_3_0.ttf") format("truetype");
+    src: url("2B4C32_3_0.eot?#iefix") format("embedded-opentype"), url("../font/2B4C32_3_0.woff") format("woff"), url("../font/2B4C32_3_0.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
@@ -17,7 +17,7 @@
 @font-face {
     font-family: 'HelveticaNeueLTStd';
     src: url("2B4C32_4_0.eot");
-    src: url("2B4C32_4_0.eot?#iefix") format("embedded-opentype"), url("2B4C32_4_0.woff") format("woff"), url("2B4C32_4_0.ttf") format("truetype");
+    src: url("2B4C32_4_0.eot?#iefix") format("embedded-opentype"), url("../font/2B4C32_4_0.woff") format("woff"), url("../font/2B4C32_4_0.ttf") format("truetype");
     font-weight: 500;
     font-style: normal
 }
@@ -25,7 +25,7 @@
 @font-face {
     font-family: 'HelveticaNeueLTStd';
     src: url("2B4C32_2_0.eot");
-    src: url("2B4C32_2_0.eot?#iefix") format("embedded-opentype"), url("2B4C32_2_0.woff") format("woff"), url("2B4C32_2_0.ttf") format("truetype");
+    src: url("2B4C32_2_0.eot?#iefix") format("embedded-opentype"), url("../font/2B4C32_2_0.woff") format("woff"), url("../font/2B4C32_2_0.ttf") format("truetype");
     font-weight: 700;
     font-style: normal
 }
