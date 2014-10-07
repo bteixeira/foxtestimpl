@@ -60,9 +60,33 @@
             zoom: 12
         });
 
+        /* Show user location if available. */
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                var foxMarker = new google.maps.Marker({
+                    position: initialLocation,
+                    map: map,
+                    animation: google.maps.Animation.BOUNCE,
+                    icon: '/img/fox-only.png'
+                });
+                /* Give the user a chance to stop the annoying bouncing. */
+                google.maps.event.addListener(foxMarker, 'click', function () {
+                    if (foxMarker.getAnimation()) {
+                        foxMarker.setAnimation(null);
+                    } else {
+                        foxMarker.setAnimation(google.maps.Animation.BOUNCE);
+                    }
+                });
+
+
+            });
+        }
+
         $scope.clearMap = function () {
-            $.each(markers, function (i, m) {
-                m.setMap(null);
+            $.each(markers, function (i, marker) {
+                marker.setMap(null);
             });
             markers = [];
         };
