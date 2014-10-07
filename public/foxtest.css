@@ -54,3 +54,10 @@ header h2 a:hover {
     text-decoration: underline;
 }
 
+.button:not(:active) {
+    transition: text-shadow 1s;
+}
+
+.button:active {
+    text-shadow: 0 0 20px rgba(100,255,109,0.9);
+}
