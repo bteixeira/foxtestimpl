@@ -1,5 +1,5 @@
 $(function () {
-
+return;
     var mapOptions = {
         center: {
             lat: 52.51,
@@ -54,45 +54,116 @@ $(function () {
 
     var markers = [];
 
-    function fetchOffers() {
-        foxjax(TOKEN, {}, function (data) {
-                cfg.token = data.token;
-                foxjax(OFFERS, {token: cfg.token}, function (data) {
-                    var i = 0;
+//    function fetchOffers() {
+//        foxjax(TOKEN, {}, function (data) {
+//                cfg.token = data.token;
+//                foxjax(OFFERS, {token: cfg.token}, function (data) {
+//                    var i = 0;
+//
+//                    function getDelay() {
+//                        return Math.round(Math.random() * 50) + 20; // between 20 and 70
+//                    }
+//
+//                    function schedule() {
+//                        if (i >= data.length) {
+//                            return;
+//                        }
+//                        var m = marker(data[i].lat, data[i].long);
+//                        markers.push(m);
+//                        i++;
+//                        setTimeout(schedule, getDelay());
+//                    }
+//
+//                    schedule();
+//                });
+//            }
+//        );
+//    }
+//
+//    fetchOffers();
 
-                    function getDelay() {
-                        return Math.round(Math.random() * 50) + 20; // between 20 and 70
-                    }
-
-                    function schedule() {
-                        if (i >= data.length) {
-                            return;
-                        }
-                        var m = marker(data[i].lat, data[i].long);
-                        markers.push(m);
-                        i++;
-                        setTimeout(schedule, getDelay());
-                    }
-
-                    schedule();
-                });
-            }
-        );
-    }
-
-    fetchOffers();
-
-    $('#js-more').on('click', function (ev) {
-        ev.preventDefault();
-        fetchOffers();
-    });
-
-    $('#js-clear').on('click', function (ev) {
-        ev.preventDefault();
-        $.each(markers, function (i, m) {
-            m.setMap(null);
-        });
-        markers = [];
-    });
+//    $('#js-more').on('click', function (ev) {
+//        ev.preventDefault();
+//        fetchOffers();
+//    });
+//
+//    $('#js-clear').on('click', function (ev) {
+//        ev.preventDefault();
+//        $.each(markers, function (i, m) {
+//            m.setMap(null);
+//        });
+//        markers = [];
+//    });
 
 });
+
+(function () {
+
+    var map;
+    var markers = [];
+
+    function dropMarkers(markers_) {
+
+        function putMarker(lat, lng) {
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                map: map,
+                title: "Hello World!",
+                animation: google.maps.Animation.DROP
+            });
+            markers.push(marker);
+            //https://code.google.com/p/gmaps-api-issues/issues/detail?id=3608
+        }
+
+        function getDelay() {
+            return Math.round(Math.random() * 100) + 50; // between 20 and 70
+        }
+
+        var i = 0;
+
+        (function schedule() {
+            if (i >= markers_.length) {
+                return;
+            }
+            putMarker(markers_[i].lat, markers_[i].long);
+            i++;
+            setTimeout(schedule, getDelay());
+        })();
+
+    }
+
+    angular.module('foxtestApp', [
+        'foxtestApp.controllers',
+        'foxtestApp.services'
+    ]);
+
+
+
+    angular.module('foxtestApp.controllers', []).controller('foxtestCtrl', function ($scope, offersService) {
+
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+            center: {
+                lat: 52.51,
+                lng: 13.37
+            },
+            zoom: 12
+        });
+
+        $scope.clearMap = function () {
+            $.each(markers, function (i, m) {
+                m.setMap(null);
+            });
+            markers = [];
+        };
+
+        $scope.fetchOffers = function () {
+            offersService.getOffers().success(function (response) {
+                dropMarkers(response);
+            });
+        };
+
+        $scope.fetchOffers();
+
+    });
+
+})();

@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="css/locafox-webfont.css">
     <link rel="stylesheet" href="css/foxtest.css">
 </head>
-<body>
+<body data-ng-app="foxtestApp" data-ng-controller="foxtestCtrl">
 
     <header>
         <img src="img/fox-only.png">
         <h1>Awesome App</h1>
-        <h2><a href="#" id="js-more" class="button">Even More Offers</a></h2>
-        <h2><a href="#" id="js-clear" class="button">Clear Map</a></h2>
+        <h2><a href="" id="js-more" class="button" data-ng-click="fetchOffers()">Even More Offers</a></h2>
+        <h2><a href="" id="js-clear" class="button" data-ng-click="clearMap()">Clear Map</a></h2>
     </header>
 
     <div id="container">
@@ -20,6 +20,8 @@
 
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/foxtest.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
 </body>
 </html>
